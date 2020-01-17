@@ -10,10 +10,11 @@ import javax.swing.JOptionPane;
  *
  * @author r.pablo
  */
-public class GameOver extends javax.swing.JFrame {
+public class GameOver extends javax.swing.JFrame{
 
-    private final int FORM_WIDTH = 708;
-    private final int FORM_HEIGHT = 599;
+    private final int FORM_WIDTH = 582;
+    private final int FORM_HEIGHT = 467;
+    
 
     /**
      * Creates new form GameOverMenu
@@ -36,14 +37,17 @@ public class GameOver extends javax.swing.JFrame {
         btnNo = new javax.swing.JButton();
         btnYes = new javax.swing.JButton();
         lblgameover = new javax.swing.JLabel();
+        lblScore = new javax.swing.JLabel();
+        lblPoints = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(null);
 
+        lblPlayQuestion.setFont(new java.awt.Font("Algerian", 0, 18)); // NOI18N
         lblPlayQuestion.setText("Do you want to Play Again?");
         getContentPane().add(lblPlayQuestion);
-        lblPlayQuestion.setBounds(170, 50, 310, 150);
+        lblPlayQuestion.setBounds(140, 180, 300, 100);
 
         btnNo.setText("No");
         btnNo.addActionListener(new java.awt.event.ActionListener() {
@@ -52,7 +56,7 @@ public class GameOver extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnNo);
-        btnNo.setBounds(310, 210, 110, 60);
+        btnNo.setBounds(350, 320, 110, 60);
 
         btnYes.setText("Yes");
         btnYes.addActionListener(new java.awt.event.ActionListener() {
@@ -61,11 +65,22 @@ public class GameOver extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnYes);
-        btnYes.setBounds(90, 210, 110, 50);
+        btnYes.setBounds(80, 320, 110, 50);
 
+        lblgameover.setFont(new java.awt.Font("Algerian", 0, 24)); // NOI18N
         lblgameover.setText("Game Over");
         getContentPane().add(lblgameover);
-        lblgameover.setBounds(192, 42, 80, 14);
+        lblgameover.setBounds(200, 30, 150, 40);
+
+        lblScore.setFont(new java.awt.Font("Algerian", 0, 18)); // NOI18N
+        lblScore.setText("Your Total Points is:");
+        getContentPane().add(lblScore);
+        lblScore.setBounds(180, 80, 220, 60);
+
+        lblPoints.setFont(new java.awt.Font("Algerian", 0, 18)); // NOI18N
+        lblPoints.setText("0");
+        getContentPane().add(lblPoints);
+        lblPoints.setBounds(250, 140, 60, 50);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -120,6 +135,8 @@ public class GameOver extends javax.swing.JFrame {
     private javax.swing.JButton btnNo;
     private javax.swing.JButton btnYes;
     private javax.swing.JLabel lblPlayQuestion;
+    private javax.swing.JLabel lblPoints;
+    private javax.swing.JLabel lblScore;
     private javax.swing.JLabel lblgameover;
     // End of variables declaration//GEN-END:variables
 
@@ -130,6 +147,12 @@ public class GameOver extends javax.swing.JFrame {
         this.setSize(FORM_WIDTH, FORM_HEIGHT);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.setVisible(true);
+        this.setVisible(true); 
+        GamePlay play = new GamePlay();
+        play.setVisible(false);
+        int score = play.points;
+        String points = Integer.toString(score);
+        lblPoints.setText(points);
+        
     }
 }

@@ -43,6 +43,7 @@ public class Rules extends javax.swing.JFrame {
         lblRule3 = new javax.swing.JLabel();
         lblRule3part2 = new javax.swing.JLabel();
         lblRule3part3 = new javax.swing.JLabel();
+        lblRule3part4 = new javax.swing.JLabel();
         lblPic = new javax.swing.JLabel();
         lblPic2 = new javax.swing.JLabel();
         lblPic3 = new javax.swing.JLabel();
@@ -96,14 +97,19 @@ public class Rules extends javax.swing.JFrame {
         lblRule3.setBounds(10, 260, 570, 33);
 
         lblRule3part2.setFont(new java.awt.Font("Algerian", 0, 24)); // NOI18N
-        lblRule3part2.setText("generates more apples.");
+        lblRule3part2.setText("points.");
         getContentPane().add(lblRule3part2);
-        lblRule3part2.setBounds(40, 320, 450, 33);
+        lblRule3part2.setBounds(40, 350, 480, 33);
 
         lblRule3part3.setFont(new java.awt.Font("Algerian", 0, 24)); // NOI18N
-        lblRule3part3.setText("One gives you  Speed and the other");
+        lblRule3part3.setText("One mulitplies the points you get for  ");
         getContentPane().add(lblRule3part3);
-        lblRule3part3.setBounds(40, 290, 450, 33);
+        lblRule3part3.setBounds(40, 290, 490, 33);
+
+        lblRule3part4.setFont(new java.awt.Font("Algerian", 0, 24)); // NOI18N
+        lblRule3part4.setText("an apple. the other subtracts your");
+        getContentPane().add(lblRule3part4);
+        lblRule3part4.setBounds(40, 320, 480, 33);
 
         lblPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Background.jpg"))); // NOI18N
         getContentPane().add(lblPic);
@@ -141,6 +147,7 @@ public class Rules extends javax.swing.JFrame {
     private javax.swing.JLabel lblRule3;
     private javax.swing.JLabel lblRule3part2;
     private javax.swing.JLabel lblRule3part3;
+    private javax.swing.JLabel lblRule3part4;
     private javax.swing.JLabel lblRules1;
     private javax.swing.JLabel lblRules2;
     private javax.swing.JLabel lblWords;
