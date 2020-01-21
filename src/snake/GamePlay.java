@@ -16,7 +16,7 @@ import javax.swing.Timer;
 import javax.swing.border.Border;
 
 /**
- * GamePlay.java - description
+ * GamePlay.java - The main Code
  *
  * @teacher Mr.Wachs
  * @author Raden Pablo
@@ -24,6 +24,7 @@ import javax.swing.border.Border;
  */
 public class GamePlay extends JFrame {
 
+    // Global Variable
     private final int STOP = 0;
     private final int LEFT = 1;
     private final int RIGHT = 2;
@@ -31,19 +32,16 @@ public class GamePlay extends JFrame {
     private final int DOWN = 4;
     private final int HEAD = 0;
     private final int BLANK = -1;
-    private final int FORM_WIDTH = 800;
-    private final int FORM_HEIGHT = 800;
+    private final int FORM_WIDTH = 740;
+    private final int FORM_HEIGHT = 740;
     private final int SQUARE_SIZE = 30;
     private final int TIMER_DELAY = 100;
     public int points = 0;
     private final Border SQUARE_BORDER = BorderFactory.createLineBorder(Color.black);
-
     private final Color SNAKE_HEAD_COLOR = Color.black;
     private final Color SNAKE_BODY_COLOR = Color.pink;
     private final Color TILE_BACKGROUND1 = new Color(0, 153, 51);
     private final Color TILE_BACKGROUND2 = new Color(51, 204, 51);
-    private final Color TILE_BACKGROUND3 = Color.MAGENTA;
-    private final Color TILE_BACKGROUND4 = Color.BLUE;
     private final String APPLE = "C:"
             + "\\Users\\r.pablo\\"
             + "Desktop\\Raden Pablo Final Project Pictures\\apple.png";
@@ -51,27 +49,15 @@ public class GamePlay extends JFrame {
             + "\\Users\\r.pablo\\"
             + "Desktop\\Raden Pablo Final Project Pictures\\"
             + "Background Game Play.jpg";
-    private final String GOLDEN_APPLE = "C:"
-            + "\\Users\\r.pablo\\"
-            + "Desktop\\Raden Pablo Final Project Pictures\\Golden Apple.png";
-
     private int countPowerUps = 0;
-
     private Movements[] snake;
-
-    private int maxRows = 24; //(FORM_HEIGHT - FORM_HEIGHT_ADJUST) / SQUARE_SIZE;
-    private int maxColumns = 23; //(FORM_WIDTH  - FORM_WIDTH_ADJUST)  / SQUARE_SIZE;
-
+    private int maxRows = 24;
+    private int maxColumns = 23;
     private Movements[] powerUps = new Movements[maxRows * maxColumns];
-
     private int length;
-
     private int counter = 0;
-
     private JLabel[][] grid;
-    private JLabel[][] grid2;
     private JLabel background;
-
     private Timer timer;
 
     /**
@@ -80,7 +66,6 @@ public class GamePlay extends JFrame {
     public GamePlay() {
         setForm();
         setGrid();
-        setGrid2();
         setKeyListener();
         setTimer();
         setSnake();
@@ -107,22 +92,6 @@ public class GamePlay extends JFrame {
     }
 
     /**
-     * set up grids
-     */
-    private void setGrid2() {
-        grid2 = new JLabel[maxRows][maxColumns];
-        int y = (FORM_HEIGHT - (maxRows * SQUARE_SIZE)) / 2;
-        for (int row = 0; row < maxRows; row++) {
-            int x = (FORM_WIDTH - (maxColumns * SQUARE_SIZE)) / 2;
-            for (int column = 0; column < maxColumns; column++) {
-                createSquare2(x, y, row, column);
-                x += SQUARE_SIZE;
-            }
-            y += SQUARE_SIZE;
-        }
-    }
-
-    /**
      * Creates each individual square on the grid
      *
      * @param x the x coordinate of the square
@@ -136,40 +105,12 @@ public class GamePlay extends JFrame {
 
         counter++;
         if (counter % 2 == 0) {
-            grid[row][column].setForeground(TILE_BACKGROUND1);
-            grid[row][column].setBackground(TILE_BACKGROUND1);
+            grid[row][column].setForeground(TILE_BACKGROUND2);
+            grid[row][column].setBackground(TILE_BACKGROUND2);
             grid[row][column].setText("1");
         } else {
             grid[row][column].setForeground(TILE_BACKGROUND2);
             grid[row][column].setBackground(TILE_BACKGROUND2);
-            grid[row][column].setText("2");
-        }
-
-        grid[row][column].setBorder(SQUARE_BORDER);
-        this.getContentPane().add(grid[row][column]);
-        grid[row][column].setBounds(x, y, SQUARE_SIZE, SQUARE_SIZE);
-    }
-
-    /**
-     * Creates each individual square on the grid
-     *
-     * @param x the x coordinate of the square
-     * @param y the y coordinate of the square
-     * @param row this squares row
-     * @param column this squares column
-     */
-    private void createSquare2(int x, int y, int row, int column) {
-        grid2[row][column] = new JLabel();
-        grid2[row][column].setOpaque(true);
-
-        counter++;
-        if (counter % 2 == 0) {
-            grid[row][column].setForeground(TILE_BACKGROUND3);
-            grid[row][column].setBackground(TILE_BACKGROUND3);
-            grid[row][column].setText("1");
-        } else {
-            grid[row][column].setForeground(TILE_BACKGROUND4);
-            grid[row][column].setBackground(TILE_BACKGROUND4);
             grid[row][column].setText("2");
         }
 
@@ -260,6 +201,9 @@ public class GamePlay extends JFrame {
         }
     }
 
+    /**
+     * Redraw the game grid for this time cycle
+     */
     private void redraw() {
         for (int row = 0; row < maxRows; row++) {
             for (int column = 0; column < maxColumns; column++) {
@@ -332,7 +276,7 @@ public class GamePlay extends JFrame {
                 || snake[HEAD].column < 0
                 || snake[HEAD].column >= maxColumns) {
             timer.stop();
-            new GameOver();
+            new GameOver(this);
             this.dispose();
 
         }
@@ -357,7 +301,7 @@ public class GamePlay extends JFrame {
 
         if (countPowerUps % 6 == 0) {
             newPowerUp();
-            grid[row][column].setIcon(new ImageIcon(GOLDEN_APPLE));
+            grid[row][column].setIcon(new ImageIcon(APPLE));
         }
 
     }
@@ -400,7 +344,7 @@ public class GamePlay extends JFrame {
                     powerUps[i] = null;
                     newPowerUp();
                     points++;
-                    System.out.println(points);
+                    System.out.println("Points: " + points);
                     return true;
                 }
             }
@@ -414,11 +358,10 @@ public class GamePlay extends JFrame {
      */
     private void checkForCollisionWithSelf() {
         if (isInSnake(snake[0].row, snake[0].column, true)) {
-
             this.dispose();
-            new GameOver();
+            System.out.println("Points: " + points);
             timer.stop();
-
+            new GameOver(this);
         }
     }
 
@@ -439,4 +382,5 @@ public class GamePlay extends JFrame {
             snake[length - 1].column--;
         }
     }
+
 }

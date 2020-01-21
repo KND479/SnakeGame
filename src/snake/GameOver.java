@@ -1,25 +1,28 @@
-/*
- *  required package class namespace 
-
- */
 package snake;
 
 import javax.swing.JOptionPane;
 
 /**
+ * GameOver.java - GameOVer Menu
  *
- * @author r.pablo
+ * @teacher Mr.Wachs
+ * @author Raden Pablo
+ * @since Jan. 9, 2020,10:36:42 a.m.
  */
-public class GameOver extends javax.swing.JFrame{
+public class GameOver extends javax.swing.JFrame {
+
+    private GamePlay play;
 
     private final int FORM_WIDTH = 582;
     private final int FORM_HEIGHT = 467;
-    
 
     /**
      * Creates new form GameOverMenu
+     *
+     * @param play
      */
-    public GameOver() {
+    public GameOver(GamePlay play) {
+        this.play = play;
         initComponents();
         setForm();
     }
@@ -39,6 +42,8 @@ public class GameOver extends javax.swing.JFrame{
         lblgameover = new javax.swing.JLabel();
         lblScore = new javax.swing.JLabel();
         lblPoints = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -47,40 +52,54 @@ public class GameOver extends javax.swing.JFrame{
         lblPlayQuestion.setFont(new java.awt.Font("Algerian", 0, 18)); // NOI18N
         lblPlayQuestion.setText("Do you want to Play Again?");
         getContentPane().add(lblPlayQuestion);
-        lblPlayQuestion.setBounds(140, 180, 300, 100);
+        lblPlayQuestion.setBounds(130, 350, 270, 30);
 
+        btnNo.setFont(new java.awt.Font("Algerian", 1, 24)); // NOI18N
         btnNo.setText("No");
+        btnNo.setBorderPainted(false);
+        btnNo.setContentAreaFilled(false);
         btnNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNoActionPerformed(evt);
             }
         });
         getContentPane().add(btnNo);
-        btnNo.setBounds(350, 320, 110, 60);
+        btnNo.setBounds(290, 390, 110, 60);
 
+        btnYes.setFont(new java.awt.Font("Algerian", 1, 36)); // NOI18N
         btnYes.setText("Yes");
+        btnYes.setBorderPainted(false);
+        btnYes.setContentAreaFilled(false);
         btnYes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnYesActionPerformed(evt);
             }
         });
         getContentPane().add(btnYes);
-        btnYes.setBounds(80, 320, 110, 50);
+        btnYes.setBounds(150, 400, 110, 50);
 
-        lblgameover.setFont(new java.awt.Font("Algerian", 0, 24)); // NOI18N
+        lblgameover.setFont(new java.awt.Font("Algerian", 0, 48)); // NOI18N
         lblgameover.setText("Game Over");
         getContentPane().add(lblgameover);
-        lblgameover.setBounds(200, 30, 150, 40);
+        lblgameover.setBounds(140, 20, 330, 80);
 
         lblScore.setFont(new java.awt.Font("Algerian", 0, 18)); // NOI18N
-        lblScore.setText("Your Total Points is:");
+        lblScore.setText("Points:");
         getContentPane().add(lblScore);
-        lblScore.setBounds(180, 80, 220, 60);
+        lblScore.setBounds(180, 320, 70, 20);
 
         lblPoints.setFont(new java.awt.Font("Algerian", 0, 18)); // NOI18N
         lblPoints.setText("0");
         getContentPane().add(lblPoints);
-        lblPoints.setBounds(250, 140, 60, 50);
+        lblPoints.setBounds(260, 320, 40, 20);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/snake/dizzy.PNG"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(190, 100, 180, 190);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/snake/white.jpg"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, 0, 590, 480);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -91,49 +110,16 @@ public class GameOver extends javax.swing.JFrame{
     }//GEN-LAST:event_btnNoActionPerformed
 
     private void btnYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYesActionPerformed
-       new GamePlay();
-       this.dispose();
+        new GamePlay();
+        this.dispose();
     }//GEN-LAST:event_btnYesActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GameOver.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GameOver.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GameOver.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GameOver.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GameOver().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNo;
     private javax.swing.JButton btnYes;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblPlayQuestion;
     private javax.swing.JLabel lblPoints;
     private javax.swing.JLabel lblScore;
@@ -147,12 +133,8 @@ public class GameOver extends javax.swing.JFrame{
         this.setSize(FORM_WIDTH, FORM_HEIGHT);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.setVisible(true); 
-        GamePlay play = new GamePlay();
-        play.setVisible(false);
-        int score = play.points;
-        String points = Integer.toString(score);
-        lblPoints.setText(points);
-        
+        this.setVisible(true);
+        System.out.println(play.points);
+        lblPoints.setText("" + play.points);
     }
 }

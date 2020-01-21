@@ -5,8 +5,11 @@
 package snake;
 
 /**
+ * GameMenu.java - Menu of the Game
  *
- * @author r.pablo
+ * @teacher Mr.Wachs
+ * @author Raden Pablo
+ * @since Jan. 9, 2020,10:36:42 a.m.
  */
 public class GameMenu extends javax.swing.JFrame {
 

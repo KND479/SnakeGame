@@ -5,7 +5,7 @@
 package snake;
 
 /**
- * Random.java - description
+ * Random.java - Random number
  *
  * @teacher Mr.Wachs
  * @author Raden Pablo
