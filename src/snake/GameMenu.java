@@ -4,6 +4,11 @@
  */
 package snake;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
+import media.MediaPlayer;
+
 /**
  * GameMenu.java - Menu of the Game
  *
@@ -17,11 +22,25 @@ public class GameMenu extends javax.swing.JFrame {
     private final int FORM_WIDTH = 792;
     private final int FORM_HEIGHT = 560;
 
+    private Timer musicCheck;
+
     /**
      * Creates new form GameMenu
      */
     public GameMenu() {
         initComponents();
+        MediaPlayer music = new MediaPlayer();
+        music.playWAV("snakeMusic.wav");
+        
+        // loop the music
+        musicCheck = new Timer(1, new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (music.isRunning() == false) {
+                    music.playWAV("Monopoly Deluxe - Music 1.wav");
+                }
+            }
+        });
         setForm();
     }
 
@@ -124,5 +143,5 @@ public class GameMenu extends javax.swing.JFrame {
         this.setResizable(false);
         this.setVisible(true);
     }
-    
+
 }

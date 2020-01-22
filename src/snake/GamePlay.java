@@ -44,10 +44,10 @@ public class GamePlay extends JFrame {
     private final Color TILE_BACKGROUND2 = new Color(51, 204, 51);
     private final String APPLE = "C:"
             + "\\Users\\r.pablo\\"
-            + "Desktop\\Raden Pablo Final Project Pictures\\apple.png";
+            + "Desktop\\Raden Pablo Final Project\\apple.png";
     private final String BACKGROUND = "C:"
             + "\\Users\\r.pablo\\"
-            + "Desktop\\Raden Pablo Final Project Pictures\\"
+            + "Desktop\\Raden Pablo Final Project\\"
             + "Background Game Play.jpg";
     private int countPowerUps = 0;
     private Movements[] snake;
@@ -71,7 +71,6 @@ public class GamePlay extends JFrame {
         setSnake();
         newPowerUp();
         timer.start();
-        System.out.println("Time is " + timer);
         setVisible(true);
     }
 
@@ -300,6 +299,7 @@ public class GamePlay extends JFrame {
         countPowerUps++;
 
         if (countPowerUps % 6 == 0) {
+            points *= 2;
             newPowerUp();
             grid[row][column].setIcon(new ImageIcon(APPLE));
         }
@@ -344,7 +344,7 @@ public class GamePlay extends JFrame {
                     powerUps[i] = null;
                     newPowerUp();
                     points++;
-                    System.out.println("Points: " + points);
+                    System.out.println("Points " + points);
                     return true;
                 }
             }
@@ -352,7 +352,6 @@ public class GamePlay extends JFrame {
         return false;
     }
 
-//
     /**
      * Checks to see if the snake head s hitting the snake body
      */

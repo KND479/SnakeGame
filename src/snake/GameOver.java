@@ -1,6 +1,10 @@
 package snake;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
+import media.MediaPlayer;
 
 /**
  * GameOver.java - GameOVer Menu
@@ -15,6 +19,7 @@ public class GameOver extends javax.swing.JFrame {
 
     private final int FORM_WIDTH = 582;
     private final int FORM_HEIGHT = 467;
+    Timer musicCheck;
 
     /**
      * Creates new form GameOverMenu
@@ -22,8 +27,20 @@ public class GameOver extends javax.swing.JFrame {
      * @param play
      */
     public GameOver(GamePlay play) {
-        this.play = play;
         initComponents();
+        this.play = play;
+        MediaPlayer music = new MediaPlayer();
+        music.playWAV("snakeMusic.wav");
+
+        // loop the music
+        musicCheck = new Timer(1, new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (music.isRunning() == false) {
+                    music.playWAV("Monopoly Deluxe - Music 1.wav");
+                }
+            }
+        });
         setForm();
     }
 
@@ -134,7 +151,6 @@ public class GameOver extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setVisible(true);
-        System.out.println(play.points);
         lblPoints.setText("" + play.points);
     }
 }
